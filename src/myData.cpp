@@ -178,7 +178,7 @@ int & myData::operator[](const int index){
         std::cout << "index out of range" << std::endl;
         exit(1);
     }
-    return(data[index].accessMembership());
+    return(data[index].access_membership());
 }
 myData myData::operator+(const myData &rhs) const{
     /*

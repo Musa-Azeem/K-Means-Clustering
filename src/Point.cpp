@@ -6,9 +6,9 @@ Implements functions of the Point class
 #include "../inc/Point.h"
 #include <math.h>
 
-Point::Point(): size(0), coord(nullptr), membership(-1), centroidDistance(-1){}
+Point::Point(): size(0), coord(nullptr), membership(-1), centroid_distance(-1){}
 Point::Point(const int num_of_coord, const double val, const int _membership)
-    : size(num_of_coord), membership(_membership), centroidDistance(-1){
+    : size(num_of_coord), membership(_membership), centroid_distance(-1){
     /*
     Alternate Constructor
     Input:  int: number of coordinates, double: value to populate object with, int: membership of Point
@@ -20,7 +20,7 @@ Point::Point(const int num_of_coord, const double val, const int _membership)
     }
 }
 Point::Point(const int num_of_coord, const double *_coord, const int _membership)
-    : size(num_of_coord), membership(_membership), centroidDistance(-1) {
+    : size(num_of_coord), membership(_membership), centroid_distance(-1) {
     /*
     Alternate Constructor
     Input:  int: number of coordinates, double*: array to populate object with, int: membership of Point
@@ -39,7 +39,7 @@ Point::Point(const Point &other){
     */
     size = other.size;
     membership = other.membership;
-    centroidDistance = other.centroidDistance;
+    centroid_distance = other.centroid_distance;
     if(size==0){
         coord = nullptr;
     }
@@ -81,7 +81,7 @@ double Point::get_centroid_distance() const{
     Input:  None
     Output: double: Centroid distance of the Point
     */
-    return(centroidDistance);
+    return(centroid_distance);
 }
 
 void Point::set_membership(const int _membership){
@@ -96,19 +96,19 @@ void Point::set_membership(const int _membership){
     }
     membership = _membership;
 }
-void Point::set_centroid_distance(const double _centroidDistance){
+void Point::set_centroid_distance(const double _centroid_distance){
     /*
     Setter for Centroid Distance of the Point
     Input: double: Centroid Distacne to set Point to 
     Output: None
     */
-    if(_centroidDistance<0){
+    if(_centroid_distance<0){
         std::cout << "Invalid Distance" << std::endl;
         exit(1);
     }
-    centroidDistance = _centroidDistance;
+    centroid_distance = _centroid_distance;
 }
-int & Point::accessMembership(){
+int & Point::access_membership(){
     /*
     Input: None
     Output: int&: returns memory location of Point's membership to be set by myData's operator[]   
@@ -177,7 +177,7 @@ const Point & Point::operator=(const Point &rhs){
     delete [] coord;
     size = rhs.size;
     membership = rhs.membership;
-    centroidDistance = rhs.centroidDistance;
+    centroid_distance = rhs.centroid_distance;
     if(size==0){
         coord = nullptr;
     }

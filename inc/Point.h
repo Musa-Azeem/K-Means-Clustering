@@ -38,7 +38,7 @@ class Point{
 
         void set_centroid_distance(const double _centroidDistance);
         void set_membership(const int _membership);
-        int & accessMembership();
+        int & access_membership();
 
         double distance(const Point &other) const;
 
@@ -51,7 +51,7 @@ class Point{
         double *coord;
         int size;
         int membership;
-        double centroidDistance;
+        double centroid_distance;
 };
 
 #endif

@@ -6,8 +6,6 @@ Implements functions of myData class
 #include "../inc/myData.h"
 #include <math.h>
 
-using namespace std;
-
 myData::myData(): data(nullptr), size(0), nvals(0) {}
 myData::myData(const long int nobserv, const int _nvals, const double val=0): size(nobserv), nvals(_nvals){
     /*
@@ -76,15 +74,15 @@ void myData::summary() const{
     Input:  None
     Output: Prints data to stdout
     */
-    cout << "Number of points in each column: " << size << endl << endl;;
+    std::cout << "Number of points in each column: " << size << std::endl << std::endl;;
     for(int i(0); i<nvals; i++){
-        cout << "Column " << i << endl;
-        cout << "Minimum Value: " << get_min_value(i) << endl;
-        cout << "Maximum Value: " << get_max_value(i) << endl;
+        std::cout << "Column " << i << std::endl;
+        std::cout << "Minimum Value: " << get_min_value(i) << std::endl;
+        std::cout << "Maximum Value: " << get_max_value(i) << std::endl;
         double mean(get_mean(i));
-        cout << "Mean: " << mean << endl;
-        cout << "Standard Deviation: " << get_stand_dev(i, mean) << endl;
-        cout << endl;
+        std::cout << "Mean: " << mean << std::endl;
+        std::cout << "Standard Deviation: " << get_stand_dev(i, mean) << std::endl;
+        std::cout << std::endl;
     }
 }
 double myData::get_min_value(const int col) const{
@@ -94,7 +92,7 @@ double myData::get_min_value(const int col) const{
     Output: Minimum value of column
     */
     if(size==0){
-        cout << "no data" << endl;
+        std::cout << "no data" << std::endl;
         exit(1);
     }
     double min(data[0][col]);    //get value at given column of first Point in data array
@@ -113,7 +111,7 @@ double myData::get_max_value(const int col) const{
     Output: Maximum value of column
     */
     if(size==0){
-        cout << "no data" << endl;
+        std::cout << "no data" << std::endl;
         exit(1);
     }
     double max(data[0][col]);    //get value at given column of first Point in data array
@@ -132,7 +130,7 @@ double myData::get_mean(const int col) const{
     Output: Mean value of column
     */
     if(size==0){
-        cout << "no data" << endl;
+        std::cout << "no data" << std::endl;
         exit(1);
     }
     double sum(0);
@@ -148,7 +146,7 @@ double myData::get_stand_dev(const int col, const double mean) const{
     Output: Standard Deviation value of column
     */
     if(size==0){
-        cout << "no data" << endl;
+        std::cout << "no data" << std::endl;
         exit(1);
     }
     double sum(0);
@@ -165,7 +163,7 @@ int myData::operator[](const int index) const{
     Output: int: membership of point at given index
     */
     if(index<0 || index>=size){
-        cout << "index out of range" << endl;
+        std::cout << "index out of range" << std::endl;
         exit(1);
     }
     return(data[index].get_membership());
@@ -177,7 +175,7 @@ int & myData::operator[](const int index){
     Output: int&: memory address of membership of point at given index to set
     */
     if(index<0 || index>=size){
-        cout << "index out of range" << endl;
+        std::cout << "index out of range" << std::endl;
         exit(1);
     }
     return(data[index].accessMembership());
@@ -190,7 +188,7 @@ myData myData::operator+(const myData &rhs) const{
     Output: new myData object of the concatonated myData objects
     */
     if(nvals!=rhs.nvals){
-        cout << "Objects are of different dimensions" << endl;
+        std::cout << "Objects are of different dimensions" << std::endl;
         exit(1);
     }
     int retSize(size+rhs.size);
@@ -232,7 +230,7 @@ bool myData::operator!=(const myData &rhs) const{
     return(!(*this==rhs));
 }
 
-istream & operator>>(istream &lhs, myData &rhs){
+std::istream & operator>>(std::istream &lhs, myData &rhs){
     /*
     stream extraction operator - populates object with values from istream
         number of observations must be set beforehand
@@ -240,16 +238,16 @@ istream & operator>>(istream &lhs, myData &rhs){
     Output: lhs for cascading
     */
     if(rhs.get_size()==0){
-        cout << "Size not set" << endl;
+        std::cout << "Size not set" << std::endl;
         exit(1);
     }
-    cout << "Enter " << rhs.get_size() << " observations of " << rhs.get_nvals() << " values:" << endl;
+    std::cout << "Enter " << rhs.get_size() << " observations of " << rhs.get_nvals() << " values:" << std::endl;
     for(int i(0); i<rhs.get_size(); i++){
         lhs >> rhs.data[i];
     }
     return(lhs);
 }
-ostream & operator<<(ostream &lhs, const myData &rhs){
+std::ostream & operator<<(std::ostream &lhs, const myData &rhs){
     /*
     Prints data points and centroids to stdout, seperated by ','
     Prints data points and appends the cluster ID they were assigned to
@@ -258,10 +256,10 @@ ostream & operator<<(ostream &lhs, const myData &rhs){
     Output: data of object is printed to ostream
     */
     for(int i(0); i<rhs.get_size(); i++){
-        lhs << rhs.data[i] << endl;
+        lhs << rhs.data[i] << std::endl;
     }
-    lhs << endl;
-    lhs << rhs.kMeans_clusters << endl;
+    lhs << std::endl;
+    lhs << rhs.kMeans_clusters << std::endl;
     return(lhs);
 }
 
@@ -281,7 +279,7 @@ double myData::kMeans_clustering(const int _nclust, const int maxIter, const dou
     Output: double: fitness of kMeans Clustering Analysis
     */
     if(size==0){
-        cout << "no data, cannot complete Kmeans Clustering" << endl;
+        std::cout << "no data, cannot complete Kmeans Clustering" << std::endl;
         return(0);
     }
     kMeans_clusters = kMeans(nvals, _nclust, get_max_value(0));

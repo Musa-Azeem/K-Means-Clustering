@@ -6,8 +6,6 @@ Implements functions of the Point class
 #include "../inc/Point.h"
 #include <math.h>
 
-using namespace std;
-
 Point::Point(): size(0), coord(nullptr), membership(-1), centroidDistance(-1){}
 Point::Point(const int num_of_coord, const double val, const int _membership)
     : size(num_of_coord), membership(_membership), centroidDistance(-1){
@@ -93,7 +91,7 @@ void Point::set_membership(const int _membership){
     Output: None
     */
     if(_membership<0){
-        cout << "Invalid Cluster ID" << endl;
+        std::cout << "Invalid Cluster ID" << std::endl;
         exit(1);
     }
     membership = _membership;
@@ -105,7 +103,7 @@ void Point::set_centroid_distance(const double _centroidDistance){
     Output: None
     */
     if(_centroidDistance<0){
-        cout << "Invalid Distance" << endl;
+        std::cout << "Invalid Distance" << std::endl;
         exit(1);
     }
     centroidDistance = _centroidDistance;
@@ -126,15 +124,15 @@ double Point::distance(const Point &other) const{
     Output: Distance between the two Points
     */
     if(!other.coord){
-        cout << "Argument Point Object data is Null" << endl;
+        std::cout << "Argument Point Object data is Null" << std::endl;
         exit(1);
     }
     if(!coord){
-        cout << "Calling Point Object data is Null" << endl;
+        std::cout << "Calling Point Object data is Null" << std::endl;
         exit(1);   
     }
     if(size != other.size){
-        cout << "Point objects are of difference dimensions" << endl;
+        std::cout << "Point objects are of difference dimensions" << std::endl;
         exit(1);
     }
     double sum(0);
@@ -151,7 +149,7 @@ double Point::operator[](const int index) const{
     Output: Value of object's array at given index
     */
     if(index < 0 || index >= size){
-        cout << "Index Out of Range" << endl;
+        std::cout << "Index Out of Range" << std::endl;
         exit(1);
     }
     return(coord[index]);
@@ -164,7 +162,7 @@ double & Point::operator[](const int index){
     Output: Memory location of object's array at given index so it can be set
     */
     if(index < 0 || index >= size){
-        cout << "Index Out of Range" << endl;
+        std::cout << "Index Out of Range" << std::endl;
         exit(1);
     }
     return(coord[index]);
@@ -222,7 +220,7 @@ bool Point::operator!=(const Point &rhs) const{
     return(!(*this==rhs));
 }
 
-ostream & operator<<(ostream &lhs, const Point &rhs){ 
+std::ostream & operator<<(std::ostream &lhs, const Point &rhs){ 
     /*
     Stream insertion operator
     Prints coordinates of Point, and then the Points membership
@@ -238,7 +236,7 @@ ostream & operator<<(ostream &lhs, const Point &rhs){
     lhs << rhs.get_membership();
     return(lhs);
 }
-istream & operator>>(istream &lhs, Point &rhs){
+std::istream & operator>>(std::istream &lhs, Point &rhs){
     /*
     Stream extraction operator
     recieves n values from istream to populate object's array

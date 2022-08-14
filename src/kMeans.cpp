@@ -12,8 +12,6 @@ Functions:
 */
 #include "../inc/kMeans.h"
 
-using namespace std;
-
 kMeans::kMeans(): nvals(0), nclust(0), clusters(nullptr), fitness(0) {}
 kMeans::kMeans(const int _nvals, const int _nclust, const double range): nvals(_nvals), nclust(_nclust), fitness(0) {
     /*
@@ -88,19 +86,19 @@ void kMeans::cluster_summary() const{
         average distance between the points and the centroid for each cluster
     */
     if(!clusters){
-        cout << "kMeans Clustering has not been completed for this dataset" << endl;
+        std::cout << "kMeans Clustering has not been completed for this dataset" << std::endl;
         return;
     }
-    cout << "Total fitness: " << fitness << endl;
-    cout << "Numbers of Clusters: " << nclust << endl << endl;
+    std::cout << "Total fitness: " << fitness << std::endl;
+    std::cout << "Numbers of Clusters: " << nclust << std::endl << std::endl;
     for(int i(0); i<nclust; i++){                        
-        cout << "Cluster " << i << ": " << endl;
-        cout << "Centroid: ";
+        std::cout << "Cluster " << i << ": " << std::endl;
+        std::cout << "Centroid: ";
         for(int j(0); j<nvals; j++){
-            cout << clusters[i].centroid[j] << " ";
+            std::cout << clusters[i].centroid[j] << " ";
         }
-        cout << endl << "Number of Members: " << clusters[i].nmembers << endl;
-        cout << "Average Distance: " << clusters[i].total_distance / clusters[i].nmembers << endl << endl;
+        std::cout << std::endl << "Number of Members: " << clusters[i].nmembers << std::endl;
+        std::cout << "Average Distance: " << clusters[i].total_distance / clusters[i].nmembers << std::endl << std::endl;
     }
 }
 
@@ -119,7 +117,7 @@ double kMeans::kMeans_clustering(Point *data, const int size, const int maxIter,
         Ouptut: fitness of kMeans Clustering - sets memberships of data Points
     */
     if(data[0].get_size() != nvals){
-        cout << "dataset is not of correct dimensions" << endl;
+        std::cout << "dataset is not of correct dimensions" << std::endl;
         exit(1);
     }
     clusters[0].nmembers = size;    //all points in data start with memberships to first cluster
@@ -248,14 +246,14 @@ void kMeans::calc_fitness(const int size){
     fitness = fitness / size;
 }
 
-ostream & operator<<(ostream &lhs, const kMeans &rhs){
+std::ostream & operator<<(std::ostream &lhs, const kMeans &rhs){
     /*
     Prints centroid data to ostream
     Input:  kMeans: object to print centroid of
     Output: Prints centroids to ostream
     */
     for(int i(0); i<rhs.nclust; i++){
-        lhs << rhs.clusters[i].centroid << endl;
+        lhs << rhs.clusters[i].centroid << std::endl;
     }
     return(lhs);
 }

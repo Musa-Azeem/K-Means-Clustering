@@ -1,25 +1,40 @@
 /*
 Written by Musa Azeem
-Completed:  
-Defines the Point object
-This object represents a data point with:
-    an n number of coordinates 
-    Membership to a cluster 
-    The distance from this point to the centroid of its cluster
-The constructor input options are:
-    None (default)
-    Number of coordinates, a value to populate array with, and membership of Point
-    Number of coordinates, a double array to populate object with, and membership of Point
-    Another instance of Point to copy
-Other input:
-    Assignment operator to assign object to another Point object
-    Stream extraction operator: recieves n values from istream to populate array
-Functions that output data:
-    distance:   calculates the distance between this object and another instance of Point
-    stream insertion operator:  outputs values of array and then the membership of the point, seperated by ','
+Completed:  11/10/21
+This file defines the Point class, which represents a multidementional data
+    point with a cluster membership
+
+Constructors:
+    Default:    no arguments
+    alternate:  takes a number of dimensions, a value to assign all values,
+        and a cluster membership
+    alternate:  takes a number of dimensions, an array to assign values to,
+        and a cluster membership
+    copy:   copies the values of another Point instance
+
+Private Class Variables:
+    coord (double *):   n-length array of values
+    size (int):         number of dimensions of point (length of coord)
+    membership (int):   id of cluster that point belongs to
+    centroid_distance (double): distance of point to the centroid of its cluster
+
+Public Functions:
+    get_size:               return number of coordinates of point
+    get_membership:         return id of the cluster point is assigned to
+    get_centroid_distance:  return distance to centroid of cluster
+    set_centroid_distance:  set the value of centroid_distance
+    set_membership:         set membership of point
+    access_membership:      returns a mutable value of the points membership
+    distance:               return distance between this point and a another point
+    operator[]:             get and set values of point with bracket operator
+    operator==:             compare values of point with another instance
+    operator!=:             compare values of point with another instance
+    operator=:              assign point to the values of another instance
 */
+
 #ifndef POINT_H
 #define POINT_H
+
 #include <iostream>
 
 class Point{

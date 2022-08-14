@@ -37,18 +37,18 @@ class myData{
         myData(const myData &other);
         ~myData();
 
-        long int getSize() const;
-        int getNvals() const;
-        int getNclust() const;
+        long int get_size() const;
+        int get_nvals() const;
+        // int getNclust() const;
         
-        double kMeansClustering(const int _nclust, const int maxIter, const double toler);
-        void ClusterSummary() const;
+        double kMeans_clustering(const int _nclust, const int maxIter, const double toler);
+        void cluster_summary() const;
         
-        void Summary() const;
-        double getMinValue(const int col) const;
-        double getMaxValue(const int col) const;
-        double getMean(const int col) const;
-        double getStandDev(const int col, const double mean) const;
+        void summary() const;
+        double get_min_value(const int col) const;
+        double get_max_value(const int col) const;
+        double get_mean(const int col) const;
+        double get_stand_dev(const int col, const double mean) const;
 
         const myData & operator=(const myData &other);
         bool operator==(const myData &other) const;         
@@ -61,7 +61,7 @@ class myData{
         Point *data;
         long int size;
         int nvals;
-        kMeans kMeansClusters;
+        kMeans kMeans_clusters;
 };
 
 #endif

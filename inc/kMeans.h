@@ -35,8 +35,8 @@ class kMeans{
         kMeans(const kMeans &other);
         ~kMeans();
         const kMeans & operator=(const kMeans &rhs);
-        double kMeansClustering(Point *data, const int size, const int maxIter, const double toler);
-        void ClusterSummary() const;
+        double kMeans_clustering(Point *data, const int size, const int maxIter, const double toler);
+        void cluster_summary() const;
 
     private:
         int nclust;
@@ -44,9 +44,9 @@ class kMeans{
         int nvals;
         double fitness;
 
-        void setMemberships(Point *data, const int size);
-        void moveCentroids(Point *data, const int size);
-        void calcFitness(const int size);
+        void set_memberships(Point *data, const int size);
+        void move_centroids(Point *data, const int size);
+        void calc_fitness(const int size);
 };
 
 #endif

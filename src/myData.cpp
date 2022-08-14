@@ -3,7 +3,7 @@ Written by Musa Azeem
 Completed:  
 Implements functions of myData class
 */
-#include "myData.h"
+#include "../inc/myData.h"
 #include <math.h>
 
 using namespace std;
@@ -67,10 +67,10 @@ const myData & myData::operator=(const myData &rhs){
     return(rhs); 
 }
 
-long int myData::getSize() const{return(size);}
-int myData::getNvals() const{return(nvals);}
+long int myData::get_size() const{return(size);}
+int myData::get_nvals() const{return(nvals);}
 
-void myData::Summary() const{
+void myData::summary() const{
     /*
     Prints summary of data and basic analysis to stdout
     Input:  None
@@ -79,15 +79,15 @@ void myData::Summary() const{
     cout << "Number of points in each column: " << size << endl << endl;;
     for(int i(0); i<nvals; i++){
         cout << "Column " << i << endl;
-        cout << "Minimum Value: " << getMinValue(i) << endl;
-        cout << "Maximum Value: " << getMaxValue(i) << endl;
-        double mean(getMean(i));
+        cout << "Minimum Value: " << get_min_value(i) << endl;
+        cout << "Maximum Value: " << get_max_value(i) << endl;
+        double mean(get_mean(i));
         cout << "Mean: " << mean << endl;
-        cout << "Standard Deviation: " << getStandDev(i, mean) << endl;
+        cout << "Standard Deviation: " << get_stand_dev(i, mean) << endl;
         cout << endl;
     }
 }
-double myData::getMinValue(const int col) const{
+double myData::get_min_value(const int col) const{
     /*
     Finds the minimum value of a column of data
     Input:  int: column to calculate minimum value of
@@ -106,7 +106,7 @@ double myData::getMinValue(const int col) const{
     }
     return(min);
 }
-double myData::getMaxValue(const int col) const{
+double myData::get_max_value(const int col) const{
     /*
     Finds the maximum value of a column of data
     Input:  int: column to calculate maximum value of
@@ -125,7 +125,7 @@ double myData::getMaxValue(const int col) const{
     }
     return(max);
 }
-double myData::getMean(const int col) const{
+double myData::get_mean(const int col) const{
     /*
     Finds the mean value of a column of data
     Input:  int: column to calculate mean value of
@@ -141,7 +141,7 @@ double myData::getMean(const int col) const{
     }
     return(sum/size);
 }
-double myData::getStandDev(const int col, const double mean) const{
+double myData::get_stand_dev(const int col, const double mean) const{
     /*
     Finds the Standard Deviation value of a column of data
     Input:  int: column to calculate Standard Deviation value of
@@ -168,7 +168,7 @@ int myData::operator[](const int index) const{
         cout << "index out of range" << endl;
         exit(1);
     }
-    return(data[index].getMembership());
+    return(data[index].get_membership());
 }
 int & myData::operator[](const int index){
     /*
@@ -239,12 +239,12 @@ istream & operator>>(istream &lhs, myData &rhs){
     Input:  myData: instance of object to populate with values
     Output: lhs for cascading
     */
-    if(rhs.getSize()==0){
+    if(rhs.get_size()==0){
         cout << "Size not set" << endl;
         exit(1);
     }
-    cout << "Enter " << rhs.getSize() << " observations of " << rhs.getNvals() << " values:" << endl;
-    for(int i(0); i<rhs.getSize(); i++){
+    cout << "Enter " << rhs.get_size() << " observations of " << rhs.get_nvals() << " values:" << endl;
+    for(int i(0); i<rhs.get_size(); i++){
         lhs >> rhs.data[i];
     }
     return(lhs);
@@ -257,26 +257,26 @@ ostream & operator<<(ostream &lhs, const myData &rhs){
     Input:  instance of myData and ostream to print it to
     Output: data of object is printed to ostream
     */
-    for(int i(0); i<rhs.getSize(); i++){
+    for(int i(0); i<rhs.get_size(); i++){
         lhs << rhs.data[i] << endl;
     }
     lhs << endl;
-    lhs << rhs.kMeansClusters << endl;
+    lhs << rhs.kMeans_clusters << endl;
     return(lhs);
 }
 
-void myData::ClusterSummary() const{
+void myData::cluster_summary() const{
     /*
-    Calls kMeans ClusterSummary function to print cluster data to stdout
+    Calls kMeans cluster_summary function to print cluster data to stdout
     Input:  None
     Output: Prints cluster info to stdout
     */
-    kMeansClusters.ClusterSummary();
+    kMeans_clusters.cluster_summary();
 }
 
-double myData::kMeansClustering(const int _nclust, const int maxIter, const double toler){
+double myData::kMeans_clustering(const int _nclust, const int maxIter, const double toler){
     /*
-    calls kMeans kMeansClustering function, passing in the object's data to perform kMeans Clustering on data
+    calls kMeans kMeans_clustering function, passing in the object's data to perform kMeans Clustering on data
     Input:  int: number of clusters, int: maximum number of iterations, double: tolerance
     Output: double: fitness of kMeans Clustering Analysis
     */
@@ -284,6 +284,6 @@ double myData::kMeansClustering(const int _nclust, const int maxIter, const doub
         cout << "no data, cannot complete Kmeans Clustering" << endl;
         return(0);
     }
-    kMeansClusters = kMeans(nvals, _nclust, getMaxValue(0));
-    return(kMeansClusters.kMeansClustering(data, size, maxIter, toler));
+    kMeans_clusters = kMeans(nvals, _nclust, get_max_value(0));
+    return(kMeans_clusters.kMeans_clustering(data, size, maxIter, toler));
 }

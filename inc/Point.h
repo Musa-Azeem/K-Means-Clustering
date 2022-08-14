@@ -27,17 +27,17 @@ class Point{
     friend std::istream & operator>>(std::istream &lhs, Point &rhs);
     public:
         Point();
-        Point(const int numOfCoord, const double val, const int _membership);
-        Point(const int numOfCoord, const double *_coord, const int _membership);
+        Point(const int num_of_coord, const double val, const int _membership);
+        Point(const int num_of_coord, const double *_coord, const int _membership);
         Point(const Point &other);
         ~Point();
 
-        int getSize() const;
-        int getMembership() const;
-        double getCentroidDistance() const;
+        int get_size() const;
+        int get_membership() const;
+        double get_centroid_distance() const;
 
-        void setCentroidDistance(const double _centroidDistance);
-        void setMembership(const int _membership);
+        void set_centroid_distance(const double _centroidDistance);
+        void set_membership(const int _membership);
         int & accessMembership();
 
         double distance(const Point &other) const;

@@ -3,13 +3,14 @@ Written by Musa Azeem
 Completed:  
 Implements functions of the Point class
 */
-#include "Point.h"
+#include "../inc/Point.h"
 #include <math.h>
 
 using namespace std;
 
 Point::Point(): size(0), coord(nullptr), membership(-1), centroidDistance(-1){}
-Point::Point(const int numOfCoord, const double val, const int _membership): size(numOfCoord), membership(_membership), centroidDistance(-1){
+Point::Point(const int num_of_coord, const double val, const int _membership)
+    : size(num_of_coord), membership(_membership), centroidDistance(-1){
     /*
     Alternate Constructor
     Input:  int: number of coordinates, double: value to populate object with, int: membership of Point
@@ -20,7 +21,8 @@ Point::Point(const int numOfCoord, const double val, const int _membership): siz
         coord[i] = val;
     }
 }
-Point::Point(const int numOfCoord, const double *_coord, const int _membership): size(numOfCoord), membership(_membership), centroidDistance(-1) {
+Point::Point(const int num_of_coord, const double *_coord, const int _membership)
+    : size(num_of_coord), membership(_membership), centroidDistance(-1) {
     /*
     Alternate Constructor
     Input:  int: number of coordinates, double*: array to populate object with, int: membership of Point
@@ -59,7 +61,7 @@ Point::~Point(){
     delete [] coord;
 }
 
-int Point::getSize() const{
+int Point::get_size() const{
     /*
     Getter for size, the number of coordinates of the Point
     Input:  None
@@ -67,7 +69,7 @@ int Point::getSize() const{
     */
     return(size);
 }
-int Point::getMembership() const{
+int Point::get_membership() const{
     /*
     Getter for memberhsip of the Point
     Input:  None
@@ -75,7 +77,7 @@ int Point::getMembership() const{
     */
     return(membership);
 }
-double Point::getCentroidDistance() const{
+double Point::get_centroid_distance() const{
     /*
     Getter for centroid distance from this Point to its centroid
     Input:  None
@@ -84,7 +86,7 @@ double Point::getCentroidDistance() const{
     return(centroidDistance);
 }
 
-void Point::setMembership(const int _membership){
+void Point::set_membership(const int _membership){
     /*
     Setter for Memberhip of the Point
     Input: int: membership to set Point to 
@@ -96,7 +98,7 @@ void Point::setMembership(const int _membership){
     }
     membership = _membership;
 }
-void Point::setCentroidDistance(const double _centroidDistance){
+void Point::set_centroid_distance(const double _centroidDistance){
     /*
     Setter for Centroid Distance of the Point
     Input: double: Centroid Distacne to set Point to 
@@ -198,7 +200,7 @@ bool Point::operator==(const Point &rhs) const{
     Input:  Point: instance of Point to compare calling object with
     Output: bool: 0 if not equal, 1 if equal    
     */
-    if(size != rhs.getSize()){
+    if(size != rhs.get_size()){
         return(0);
     }
     for(int i(0); i<size; i++){
@@ -230,10 +232,10 @@ ostream & operator<<(ostream &lhs, const Point &rhs){
     if(!rhs.coord){
         return(lhs);
     }
-    for(int i(0); i<rhs.getSize(); i++){
+    for(int i(0); i<rhs.get_size(); i++){
         lhs << rhs[i] << ",";
     }
-    lhs << rhs.getMembership();
+    lhs << rhs.get_membership();
     return(lhs);
 }
 istream & operator>>(istream &lhs, Point &rhs){
@@ -244,7 +246,7 @@ istream & operator>>(istream &lhs, Point &rhs){
     Input:  n double values, seperated by whitespace
     Output: None
     */
-    for(int i(0); i<rhs.getSize(); i++){
+    for(int i(0); i<rhs.get_size(); i++){
         lhs >> rhs[i];
     }
     return(lhs);

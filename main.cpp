@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "myData.h"
+#include "inc/myData.h"
 
 using namespace std;
 
@@ -55,11 +55,11 @@ int main(int argc, char** argv)
     //11    no setters because they would not be appropriate
 
     in_file >> data2;           //12) >>
-    data2.Summary();            //14) Summary
-    fitness = data2.kMeansClustering(2, 100, 0.001);    //15) kMeansClustering
+    data2.summary();            //14) Summary
+    fitness = data2.kMeans_clustering(2, 100, 0.001);    //15) kMeansClustering
     cout << "K-Means Cluster with 2 clusters produced a fitness of " << fitness;
     cout << endl;
-    data2.ClusterSummary();     //16) ClusterSummary
+    data2.cluster_summary();     //16) ClusterSummary
 
     //17 []
     data2[0] = 5;

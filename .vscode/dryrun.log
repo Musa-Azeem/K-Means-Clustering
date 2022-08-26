@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/musaazeem/dev/K-Means-Clustering'
+g++ -std=c++17 main.cpp src/kMeans.cpp src/myData.cpp src/Point.cpp -o kmeans
+make: Leaving directory `/Users/musaazeem/dev/K-Means-Clustering'
+ 

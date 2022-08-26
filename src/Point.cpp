@@ -4,22 +4,22 @@ Completed:  11/10/21
 This file implements functions of the Point class
 
 Functions:
-    Default Constructor:    initialize values to default
-    Alternate Constructor:  initializes point with a value to fill all and a cluster membership
-    Alternate Constructor:  initializes point with an array to fill values and a cluster membership
-    Copy Constructor:       copy the values of another Point instance
-    Destructor:             deallocates memory
-    get_size:               return number of coordinates of point
-    get_membership:         return id of the cluster point is assigned to
-    get_centroid_distance:  return distance to centroid of cluster
-    set_centroid_distance:  set the value of centroid_distance
-    set_membership:         set membership of point
-    access_membership:      returns a mutable value of the points membership
-    distance:               return distance between this point and a another point
-    operator[]:             get and set values of point with bracket operator
-    operator==:             compare values of point with another instance
-    operator!=:             compare values of point with another instance
-    operator=:              assign point to the values of another instance
+    Default Constructor     initialize values to default
+    Alternate Constructor   initializes point with a value to fill all and a cluster membership
+    Alternate Constructor   initializes point with an array to fill values and a cluster membership
+    Copy Constructor        copy the values of another Point instance
+    Destructor              deallocates memory
+    get_size                return number of coordinates of point
+    get_membership          return id of the cluster point is assigned to
+    get_centroid_distance   return distance to centroid of cluster
+    set_centroid_distance   set the value of centroid_distance
+    set_membership          set membership of point
+    access_membership       returns a mutable value of the points membership
+    distance                return distance between this point and a another point
+    operator[]              get and set values of point with bracket operator
+    operator==              compare values of point with another instance
+    operator!=              compare values of point with another instance
+    operator=               assign point to the values of another instance
 */
 
 #include "../inc/Point.h"

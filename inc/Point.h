@@ -19,17 +19,17 @@ Private Class Variables:
     centroid_distance (double): distance of point to the centroid of its cluster
 
 Public Functions:
-    get_size:               return number of coordinates of point
-    get_membership:         return id of the cluster point is assigned to
-    get_centroid_distance:  return distance to centroid of cluster
-    set_centroid_distance:  set the value of centroid_distance
-    set_membership:         set membership of point
-    access_membership:      returns a mutable value of the points membership
-    distance:               return distance between this point and a another point
-    operator[]:             get and set values of point with bracket operator
-    operator==:             compare values of point with another instance
-    operator!=:             compare values of point with another instance
-    operator=:              assign point to the values of another instance
+    get_size                return number of coordinates of point
+    get_membership          return id of the cluster point is assigned to
+    get_centroid_distance   return distance to centroid of cluster
+    set_centroid_distance   set the value of centroid_distance
+    set_membership          set membership of point
+    access_membership       returns a mutable value of the points membership
+    distance                return distance between this point and a another point
+    operator[]              get and set values of point with bracket operator
+    operator==              compare values of point with another instance
+    operator!=              compare values of point with another instance
+    operator=               assign point to the values of another instance
 */
 
 #ifndef POINT_H

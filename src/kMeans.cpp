@@ -4,10 +4,10 @@ Completed:  11/10/21
 This file implements functions of kMeans class
 
 Functions:
-    default constructor: initializes class variables as 0 or null
-    alternate constructor: initialize class variables with values
-    copy constructor: initialize object with another instance
-    assignment operator: assign object to another instance to copy values
+    default constructor     initializes class variables as 0 or null
+    alternate constructor   initialize class variables with values
+    copy constructor        initialize object with another instance
+    assignment operator     assign object to another instance to copy values
     cluster_summary
 */
 #include "../inc/kMeans.h"
@@ -170,8 +170,8 @@ void kMeans::set_memberships(Point *data, const int size){
     Input:  Point*: array of Point objects, int: size of array
     Output: None - directly modifies data and clusters
     */
-    //calculate distance between every point and each cluster
-    //assign membership of each point to closest cluster
+    // calculate distance between every point and each cluster
+    // assign membership of each point to closest cluster
     double leastDist;
     double prevDist;
     double dist;
@@ -179,22 +179,22 @@ void kMeans::set_memberships(Point *data, const int size){
     int prevMember;
     for(int i(0); i<size; i++){
         //loop through every data point
-        id = data[i].get_membership();    //get membership of point
-        data[i].set_centroid_distance(data[i].distance(clusters[id].centroid));  //set each points centroid distance to moved centroid
-        leastDist = data[i].get_centroid_distance();   //initially set leastDist to distance to current centroid
-        prevMember = id;     //save the old membership of point before changing it
+        id = data[i].get_membership();    // get membership of point
+        data[i].set_centroid_distance(data[i].distance(clusters[id].centroid));  // set each points centroid distance to moved centroid
+        leastDist = data[i].get_centroid_distance();   // initially set leastDist to distance to current centroid
+        prevMember = id;     // save the old membership of point before changing it
         for(int j(0); j<nclust; j++){
-            //loop through clusters - calculate distance of current point to each cluster and find least
+            // loop through clusters - calculate distance of current point to each cluster and find least
             dist = data[i].distance(clusters[j].centroid);
             if(dist < leastDist){
-                leastDist = dist;   //set leastDist to the distance to the nearest cluster
-                id = j;             //if the distance to this cluster is less, set membership of point to it
+                leastDist = dist;   // set leastDist to the distance to the nearest cluster
+                id = j;             // if the distance to this cluster is less, set membership of point to it
             }
         }
-        if(id != prevMember){   //change membership of point if there is a new shortest distance
+        if(id != prevMember){   // change membership of point if there is a new shortest distance
             data[i].set_membership(id);
-            clusters[id].nmembers++;    //incremenent counter of members for centroid
-            clusters[prevMember].nmembers--; //decrement old centroid since it lost a member
+            clusters[id].nmembers++;    // incremenent counter of members for centroid
+            clusters[prevMember].nmembers--; // decrement old centroid since it lost a member
         }
     }
 }
@@ -205,24 +205,24 @@ void kMeans::move_centroids(Point *data, const int size){
     Input:  Point*: array of Point objects, int: size of array
     Output: None - directly modifies clusters
     */
-    double means[nclust][nvals];    //hold mean of each coordinate of data points assigned to each cluster
+    double means[nclust][nvals];    // hold mean of each coordinate of data points assigned to each cluster
     for(int i(0); i<nclust; i++){
         for(int j(0); j<nvals; j++){
             means[i][j]=0;
         }
     }
-    for(int i(0); i<size; i++){ //loop through all points
-        for(int id(0); id<nclust; id++){ //loop through cluster ids
+    for(int i(0); i<size; i++){ // loop through all points
+        for(int id(0); id<nclust; id++){ // loop through cluster ids
             if(data[i].get_membership() == id){
-                //if point is a member of this cluster, add its coordinates to array
+                // if point is a member of this cluster, add its coordinates to array
                 for(int j(0); j<nvals; j++){
                     means[id][j] += data[i][j];
                 }
-                //data[i].set_centroid_distance(data[i].distance(clusters[id].centroid));
+                // data[i].set_centroid_distance(data[i].distance(clusters[id].centroid));
             }
         }
     }
-    for(int i(0); i<nclust; i++){   //loop through clusters to find means and assign new location
+    for(int i(0); i<nclust; i++){   // loop through clusters to find means and assign new location
         for(int j(0); j<nvals; j++){
             if(clusters[i].nmembers!=0){
                 means[i][j] = means[i][j] / clusters[i].nmembers;

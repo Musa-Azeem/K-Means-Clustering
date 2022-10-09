@@ -32,3 +32,8 @@
 *.app
 
 final
+.DS_Store
+TODO
+kmeans
+out.txt
+.vscode

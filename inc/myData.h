@@ -1,7 +1,9 @@
 /*
 Written by Musa Azeem
-Completed:  
-This program defines the myData object, which holds a 2D array of data and can perform kMeans Clustering analysis on it
+Completed:  11/10/21
+
+This program defines the myData object, which holds a 2D array of data and can 
+    perform kMeans Clustering analysis on it
 This objects contains:
     an array of Point objects to hold data
     size of dataset

@@ -6,11 +6,11 @@ This file defines the Point class, which represents a multidementional data
 
 Constructors:
     Default:    no arguments
-    alternate:  takes a number of dimensions, a value to assign all values,
+    Alternate:  takes a number of dimensions, a value to assign all values,
         and a cluster membership
-    alternate:  takes a number of dimensions, an array to assign values to,
+    Alternate:  takes a number of dimensions, an array to assign values to,
         and a cluster membership
-    copy:   copies the values of another Point instance
+    Copy:   copies the values of another Point instance
 
 Private Class Variables:
     coord (double *):   n-length array of values

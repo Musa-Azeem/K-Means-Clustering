@@ -1,6 +1,6 @@
 /*
 Written by Musa Azeem
-Completed:  
+Completed:  11/10/21
 Implements functions of myData class
 */
 #include "../inc/myData.h"
@@ -10,7 +10,10 @@ myData::myData(): data(nullptr), size(0), nvals(0) {}
 myData::myData(const long int nobserv, const int _nvals, const double val=0): size(nobserv), nvals(_nvals){
     /*
     Alternate Constructor
-    Input:  long int: number of observations, int: number of values for each observation, double: value to populate object with
+    Input:  
+        long int: number of observations
+        int: number of values for each observation
+        double: value to populate object with
     Output: None
     */
     data = new Point[size];

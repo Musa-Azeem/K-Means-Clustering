@@ -8,7 +8,8 @@ Functions:
     alternate constructor   initialize class variables with values
     copy constructor        initialize object with another instance
     assignment operator     assign object to another instance to copy values
-    cluster_summary
+    cluster_summary         prints results of cluster analysis
+    kMeans_clustering       Performs K-means clustering on set of data
 */
 #include "../inc/kMeans.h"
 

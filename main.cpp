@@ -9,7 +9,7 @@ int main(int argc, char** argv)
     std::ofstream out_file;
     std::string inFile, outFile, Input;
     int obs, dim;
-    double fitness(0);
+    double fitness = 0;
 
     if(argc != 3) {
        std::cout << "Usage for " << argv[0] << ":" << std::endl;
@@ -36,35 +36,38 @@ int main(int argc, char** argv)
         exit(1);
     }
 
-    myData data2(obs, dim, 0);
+    // Usage examples
+    myData data1;               // Default Constructor
+    myData data2(obs, dim, 0);  // Alternate Constructor
+    myData data3(data2);        // Copy Constructor
+    myData data4(obs, dim, 0);  // Alternate Constructor
 
-    //TESTING
-    myData data1;               //3) Default
-    myData data5(obs, dim, 0);  //4)    Alt
-    //5
-    myData data3(data2);        //6) copy
-    data1 = data5;              //7) assignment
+    data1 = data4;              // Assignment Operator
     data1 = myData(30, 2, 0);
     data3 = myData(10, 2, -4);
-    std::cout << "data1==data2 " << (data1==data2) << std::endl;   //8) equality
-    std::cout << "data1!=data2 " << (data1!=data2) << std::endl;   //9) inequality
-    myData data4 = data1+data3; //10) addition
-    std::cout << data4;
-    //11    no setters because they would not be appropriate
+    std::cout << "data1==data2 " << (data1==data2) << std::endl;   // Equality
+    std::cout << "data1!=data2 " << (data1!=data2) << std::endl;   // Inequality
 
-    in_file >> data2;           //12) >>
-    data2.summary();            //14) Summary
-    fitness = data2.kMeans_clustering(2, 100, 0.001);    //15) kMeansClustering
+    myData data4 = data1+data3; // Addition Operator
+    std::cout << data4;
+
+    in_file >> data2;           // Stream Extraction Operator
+
+    data2.summary();            // Summary Function
+
+    // Performing Clustering
+    fitness = data2.kMeans_clustering(2, 100, 0.001);
     std::cout << "K-Means Cluster with 2 clusters produced a fitness of " << fitness;
     std::cout << std::endl;
-    data2.cluster_summary();     //16) ClusterSummary
+    data2.cluster_summary();
 
-    //17 []
-    data2[0] = 5;
+    data2[0] = 5;   // Brackets Operator
     std::cout << data2[0] << std::endl;
-    out_file << data2;      //13) <<
+
+    // Stream Insertion Operator
+    out_file << data2;
 
     in_file.close();
     out_file.close();
-    return(0);
+    return 0;
 }

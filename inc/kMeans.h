@@ -18,7 +18,6 @@ Functions that Output data:
     stream insertion operator prints the clusters' centroids to ostream
     kMeansClustering modifies memberships of Points given to it and returns the fitness of kMeans Clustering
     ClusterSummary prints the cluster data to stdout
-
 */
 #ifndef KMEANS_H
 #define KMEANS_H
